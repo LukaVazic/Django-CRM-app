@@ -1,0 +1,67 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+    <h5>Dobrodošli! {{user}} 👋 </h5>
+
+    <hr>
+
+    <a class = "btn btn-outline-primary btn-sm" href = "{% url 'create' %}"> 
+
+        Unesi Zahtev &nbsp;
+
+        <i class="fa fa-plus" aria-hidden="true"></i>
+
+    </a> 
+
+    <hr>
+
+    <table class = "table table-light table-bordered">
+
+        <thead class = "table-dark">
+            <tr>        
+                <th scope = "col"> ID </th>
+                <th scope = "col"> Klijent </th>
+                <th scope = "col"> Tip Stranke </th>
+                <th scope = "col"> Email </th>
+                <th scope = "col"> Telefon </th>
+                <th scope = "col"> Uređaj </th>
+                <th scope = "col"> Opis zahteva </th>
+                <th scope = "col"> Datum prijema </th>
+
+                <th scope = "col"> Prikaži </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% if records %}
+
+                {% for record in records %}
+            <tr>    
+                <td>{{record.id}}</td>
+                <td>{{record.klijent}}</td>
+                <td>{{record.tip_stranke}}</td>
+                <td>{{record.email}}</td>
+                <td>{{record.telefon}}</td>
+                <td>{{record.uredjaj}}</td>
+                <td>{{record.opis_zahteva}}</td>
+                <td>{{record.datum_kreiranja}}</td>
+
+                <td style="text-align: center; vertical-align: middle;"> 
+                
+                    <a class = "btn btn-success btn-sm " href = "{% url 'record' record.id %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a>
+                
+                </td>
+
+            </tr>
+                {% endfor %}
+
+            {% endif %}
+                
+        </tbody>
+
+    </table>
+
+
+{% endblock %}
